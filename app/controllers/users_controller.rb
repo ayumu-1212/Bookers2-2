@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  before_action :who_are_you, only: [:edit, :update]
+
   def show
     @books = Book.where(user_id: params[:id])
     @user = User.find(params[:id])
@@ -13,8 +15,12 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     @user.update(user_params)
-    @user.save
-    redirect_to user_path(@user)
+    if @user.save
+      flash[:notice] = "You have updated user successfully."
+      redirect_to user_path(@user)
+    else
+      render :edit
+    end
   end
 
   def index
@@ -25,6 +31,12 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:name, :introduction)
+    params.require(:user).permit(:name, :introduction, :profile_image)
+  end
+
+  def who_are_you
+    if current_user.id != params[:id].to_i
+      redirect_to user_path(current_user)
+    end
   end
 end

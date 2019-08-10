@@ -11,9 +11,12 @@
 
   <body>
 		<header>
-			<nav>
+      <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-header">
+          <p>Bookers</p>
+        </div>
 				<% if user_signed_in? %>	
-					<ul>
+					<ul class="nav navbar-nav navbar-right">
 						<li>
 							<%= link_to "Home", user_path(current_user) %>
 						</li>
@@ -28,7 +31,7 @@
 						</li>
 					</ul>
 				<% else %>
-					<ul>
+					<ul class="nav navbar-nav navbar-right">
 						<li>
 							<%= link_to "Home", root_path %>
 						</li>
@@ -43,10 +46,13 @@
 						</li>
 					</ul>
 				<% end %>
-			</nav>						
+			</nav>
 		</header>
-		<div class="container">
+		<div class="container-fluid">
+      <% if flash[:notice] %>
+        <%= flash[:notice] %>
+      <% end %>
 			<%= yield %>
-		</div>	
+    </div>
   </body>
 </html>
