@@ -10,49 +10,53 @@
   </head>
 
   <body>
-		<header>
+    <header>
       <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="navbar-header">
+        <div class="navbar-header" style="color:white; margin-left:9%; font-size:20px;">
           <p>Bookers</p>
         </div>
-				<% if user_signed_in? %>	
-					<ul class="nav navbar-nav navbar-right">
-						<li>
-							<%= link_to "Home", user_path(current_user) %>
-						</li>
-						<li>
-							<%= link_to "Users", users_path %>
-						</li>
-						<li>
-							<%= link_to "Books", books_path %>
-						</li>
-						<li>
-							<%= link_to "Logout", destroy_user_session_path, method: :delete %>
-						</li>
-					</ul>
-				<% else %>
-					<ul class="nav navbar-nav navbar-right">
-						<li>
-							<%= link_to "Home", root_path %>
-						</li>
-						<li>
-							<%= link_to "About", about_path %>
-						</li>
-						<li>
-							<%= link_to "Signup", new_user_registration_path %>
-						</li>
-						<li>
-							<%= link_to "Signin", new_user_session_path %>
-						</li>
-					</ul>
-				<% end %>
-			</nav>
-		</header>
-		<div class="container-fluid">
+        <ul class="nav navbar-nav navbar-right" style="margin-right:9%;">
+          <% if user_signed_in? %>
+            <li>
+              <%= link_to "Home", user_path(current_user) %>
+            </li>
+            <li>
+              <%= link_to "Users", users_path %>
+            </li>
+            <li>
+              <%= link_to "Books", books_path %>
+            </li>
+            <li>
+              <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+            </li>
+          <% else %>
+            <li>
+              <%= link_to "Home", root_path %>
+            </li>
+            <li>
+              <%= link_to "About", about_path %>
+            </li>
+            <li>
+              <%= link_to "Signup", new_user_registration_path %>
+            </li>
+            <li>
+              <%= link_to "Signin", new_user_session_path %>
+            </li>
+          <% end %>
+        </ul>
+      </nav>
+    </header>
+    <div class="container-fluid">
       <% if flash[:notice] %>
         <%= flash[:notice] %>
       <% end %>
-			<%= yield %>
+      <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10">
+          <%= yield %>
+        </div>
+        <div class="col-lg-1"></div>
+      </div>
     </div>
   </body>
 </html>

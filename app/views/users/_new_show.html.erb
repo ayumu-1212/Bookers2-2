@@ -1,6 +1,6 @@
 <h2>User info</h2>
 <%= attachment_image_tag user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg" %>
-<table>
+<table class="table">
 	<tr>
 		<td>name</td>
 		<td>
@@ -14,7 +14,7 @@
 		</td>
 	</tr>
 </table>
-<%= link_to "Edit User", edit_user_path(user) %>
+<%= link_to "Edit User", edit_user_path(user), type: "button", class: "btn btn-default btn-block" %>
 
 <h2>New book</h2>
 <%= form_for newbook do |f| %>
@@ -23,5 +23,5 @@
 	<p>Opinion<p>
 	<%= f.text_area :body %>
 	<br>
-	<%= f.submit "Create Book" %>
+  <%= f.submit "Create Book", class: "btn btn-primary btn-block" %>
 <% end %>
