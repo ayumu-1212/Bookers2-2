@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
 
+  before_action :authenticate_user!
   before_action :who_are_you, only: [:edit, :update, :destroy]
 
   def index
@@ -54,7 +55,7 @@ class BooksController < ApplicationController
 
   def who_are_you
     if current_user != Book.find(params[:id]).user
-      redirect_to user_path(current_user)
+      redirect_to books_path
     end
   end
 end

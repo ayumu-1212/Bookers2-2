@@ -14,14 +14,16 @@
 		</td>
 	</tr>
 </table>
-<%= link_to "Edit User", edit_user_path(user), type: "button", class: "btn btn-default btn-block" %>
+<%= link_to edit_user_path(user), type: "button", class: "btn btn-default btn-block" do %>
+  <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+<% end %>
 
 <h2>New book</h2>
 <%= form_for newbook do |f| %>
 	<p>Title</p>
-	<%= f.text_field :title %>
+	<%= f.text_field :title, style: "width:100%;" %>
 	<p>Opinion<p>
-	<%= f.text_area :body %>
+	<%= f.text_area :body, style: "width:100%;" %>
 	<br>
   <%= f.submit "Create Book", class: "btn btn-primary btn-block" %>
 <% end %>
