@@ -3,5 +3,9 @@ Rails.application.routes.draw do
   get 'home/about', as: "about"
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-	resources :users, :books
+	resources :users
+  resources :books do
+    resources :book_comments, only: [:edit, :create, :update, :destroy]
+    resource :likes
+  end
 end

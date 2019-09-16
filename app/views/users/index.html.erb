@@ -6,19 +6,23 @@
 		<h1>users</h1>
 		<table class="table">
 			<tr>
-				<th>image</th>
-				<th>name</th>
-				<th></th>
+				<th class="col-xs-2">image</th>
+				<th class="col-xs-2">name</th>
+				<th class="col-xs-6">introduction</th>
+				<th class="col-xs-2"></th>
 			</tr>
 			<% @users.each do |user| %>
 				<tr>
-					<td>
+					<td class="col-xs-2">
 						<%= attachment_image_tag user, :profile_image,:fill, 40, 40, fallback: "no_image.jpg", size: "40x40" %>
 					</td>
-					<td>
+					<td class="col-xs-2">
 						<%= user.name %>
 					</td>
-					<td>
+					<td class="col-xs-6">
+						<%= user.introduction %>
+					</td>
+					<td class="col-xs-2">
 						<%= link_to "show", user_path(user) %>
 					</td>
 				</tr>
