@@ -18,20 +18,39 @@
     <h1>Books</h1>
     <table class="table">
       <tr>
-        <th></th>
-        <th>Title</th>
-        <th>Opinion</th>
+        <th class="col-xs-2"></th>
+        <th class="col-xs-2">Title</th>
+        <th class="col-xs-6">Opinion</th>
+        <th class="col-xs-1"></th>
+        <th class="col-xs-1"></th>
       </tr>
       <% @books.each do |book| %>
         <tr>
-          <td>
+          <td class="col-xs-2">
             <%= attachment_image_tag book.user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg", size: "40x40" %>
           </td>
-          <td>
+          <td class="col-xs-2">
             <%= link_to book.title, book_path(book) %>
           </td>
-          <td>
+          <td class="col-xs-6">
             <%= book.body %>
+          </td>
+          <td class="col-xs-1">
+            <% if book.liked_by?(current_user) %>
+              <%= link_to book_likes_path(book_id: book.id, pass: "/books"), method: :delete do %>
+                <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
+                <%= book.likes.count %>
+              <% end %>
+            <% else %>
+              <%= link_to book_likes_path(book_id: book.id, pass: "/books"), method: :post do %>
+                <i class="far fa-heart" aria-hidden="true"></i>
+                <%= book.likes.count %>
+              <% end %>
+            <% end %>
+          </td>
+          <td class="col-xs-1">
+              <i class="far fa-comment" aria-hidden="true"></i>
+              <%= book.book_comments.count %>
           </td>
         </tr>
       <% end %>
