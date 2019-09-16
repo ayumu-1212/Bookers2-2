@@ -3,6 +3,14 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :who_are_you, only: [:edit, :update]
 
+  def following_index
+    @user = User.find(params[:id])
+  end
+
+  def follower_index
+    @user = User.find(params[:id])
+  end
+
   def show
     @books = Book.where(user_id: params[:id])
     @user = User.find(params[:id])
