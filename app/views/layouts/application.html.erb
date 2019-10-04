@@ -33,6 +33,11 @@
               <% end %>
             </li>
             <li>
+              <%= link_to tags_path do %>
+                <span class="glyphicon glyphicon-tags" aria-hidden="true"> Tags</span>
+              <% end %>
+            </li>
+            <li>
               <%= link_to destroy_user_session_path, method: :delete do %>
                 <span class="glyphicon glyphicon-log-out" aria-hidden="true"> Logout</span>
               <% end %>

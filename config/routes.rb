@@ -11,7 +11,9 @@ Rails.application.routes.draw do
   end
   resources :books do
     resources :book_comments, only: [:edit, :create, :update, :destroy]
-    resource :likes
+    resource :likes, only: [:create, :destroy]
   end
-  resources :relationships
+  resources :relationships, only: [:create, :destroy]
+  resources :tag_contents
+  resources :tags
 end

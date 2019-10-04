@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-lg-3">
+    <%= render 'users/new_show', user: @user, newbook: @newbook, passer: "/tags/#{@taged.id}", newtag: @newtag %>
+  </div>
+  <div class="col-lg-9">
+    <h1>Tag</h1>
+    <h3>tagname</h3>
+    <%= @taged.tag_content.genre %>
+    <h3>public description</h3>
+    <ul>
+      <% tag_content = @taged.tag_content %>
+      <% tag_content.public_descriptions.each do |description| %>
+        <li><%= description.content %></li>
+      <% end %>
+    </ul>
+    <h3>private description</h3>
+    <ul>
+      <% @taged.private_descriptions.each do |description| %>
+        <li><%= description.content %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>

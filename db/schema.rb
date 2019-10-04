@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_16_110402) do
+ActiveRecord::Schema.define(version: 2019_09_28_084108) do
 
   create_table "book_comments", force: :cascade do |t|
     t.text "comment"
@@ -28,11 +28,13 @@ ActiveRecord::Schema.define(version: 2019_09_16_110402) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "followers", force: :cascade do |t|
-    t.integer "follow_user_id"
-    t.integer "followed_user_id"
+  create_table "descriptions", force: :cascade do |t|
+    t.integer "tag_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "private_content"
+    t.text "pablic_content"
+    t.index ["tag_id"], name: "index_descriptions_on_tag_id"
   end
 
   create_table "likes", force: :cascade do |t|
@@ -42,6 +44,22 @@ ActiveRecord::Schema.define(version: 2019_09_16_110402) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "private_descriptions", force: :cascade do |t|
+    t.integer "tag_id"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tag_id"], name: "index_private_descriptions_on_tag_id"
+  end
+
+  create_table "public_descriptions", force: :cascade do |t|
+    t.integer "tag_content_id"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tag_content_id"], name: "index_public_descriptions_on_tag_content_id"
+  end
+
   create_table "relationships", force: :cascade do |t|
     t.integer "user_id"
     t.integer "follow_id"
@@ -49,6 +67,21 @@ ActiveRecord::Schema.define(version: 2019_09_16_110402) do
     t.datetime "updated_at", null: false
     t.index ["follow_id"], name: "index_relationships_on_follow_id"
     t.index ["user_id"], name: "index_relationships_on_user_id"
+  end
+
+  create_table "tag_contents", force: :cascade do |t|
+    t.text "genre"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.integer "book_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "tag_content_id"
+    t.index ["book_id"], name: "index_tags_on_book_id"
+    t.index ["tag_content_id"], name: "index_tags_on_tag_content_id"
   end
 
   create_table "users", force: :cascade do |t|
