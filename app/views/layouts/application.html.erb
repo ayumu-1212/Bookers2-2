@@ -38,6 +38,11 @@
               <% end %>
             </li>
             <li>
+              <%= link_to maps_path do %>
+                <span class="glyphicon glyphicon-map-marker" aria-hidden="true"> Map</span>
+              <% end %>
+            </li>
+            <li>
               <%= link_to destroy_user_session_path, method: :delete do %>
                 <span class="glyphicon glyphicon-log-out" aria-hidden="true"> Logout</span>
               <% end %>
