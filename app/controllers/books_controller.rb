@@ -2,17 +2,16 @@ class BooksController < ApplicationController
 
   before_action :authenticate_user!
   before_action :who_are_you, only: [:edit, :update, :destroy]
+  before_action :set_book, only: [:index, :show]
 
   def index
     @books = Book.all.order(:created_at)
     @user = current_user
-    @newbook = Book.new
   end
 
   def show
     @book = Book.find(params[:id])
     @user = @book.user
-    @newbook = Book.new
     @comment = BookComment.new
   end
 
@@ -45,13 +44,23 @@ class BooksController < ApplicationController
     else
       @user = current_user
       @books = Book.all.order(:created_at)
+      @newtag = TagContent.new
+      @public_description = @newtag.public_descriptions.build
       render :index
     end
   end
 
   private
   def book_params
-    params.require(:book).permit(:title, :body)
+    params.require(:book).permit(:title, :body, tags_attributes: [:id, :tag_content_id, :_destroy, private_descriptions_attributes: [:id, :content, :_destroy]])
+  end
+
+  def set_book
+    @newbook = Book.new
+    @tag = @newbook.tags.build
+    @private_description = @tag.private_descriptions.build
+    @newtag = TagContent.new
+    @public_description = @newtag.public_descriptions.build
   end
 
   def who_are_you

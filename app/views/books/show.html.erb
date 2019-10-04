@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-lg-3">
-    <%= render 'users/new_show', user: @user, newbook: @newbook, passer: "/books/#{@book.id}" %>
+    <%= render 'users/new_show', user: @user, newbook: @newbook, passer: "/books/#{@book.id}", newtag: @newtag %>
   </div>
   <div class="col-lg-9">
     <div class="row">
@@ -15,10 +15,19 @@
               <% end %>
             </td>
             <td class="col-xs-2">
-              <%= @book.title %>
+                <%= @book.title %>
             </td>
             <td class="col-xs-5">
-              <%= @book.body %>
+              <div class="book-body">
+                <%= @book.body %>
+              </div>
+              <div class="book-tags">
+                <% Tag.where(book_id: @book.id).each do |tag| %>
+                  <%= link_to tag_path(tag.id) do %>
+                    <%= "#" + tag.tag_content.genre + " " %>
+                  <% end %>
+                <% end %>
+              </div>
             </td>
             <td class="col-xs-1">
               <% if @book.liked_by?(current_user) %>

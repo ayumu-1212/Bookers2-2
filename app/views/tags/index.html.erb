@@ -1,0 +1,42 @@
+<div class="row">
+	<div class="col-lg-3">
+		<%= render 'users/new_show', user: @user, newbook: @newbook, passer: "/tags", newtag: @newtag %>
+	</div>
+	<div class="col-lg-9">
+		<h1>tags</h1>
+		<table class="table">
+			<tr>
+				<th class="col-xs-2">name</th>
+				<th class="col-xs-6">descriptions</th>
+				<th class="col-xs-2">times</th>
+				<th class="col-xs-1"></th>
+				<th class="col-xs-1"></th>
+			</tr>
+			<% @tag_contents.each do |tag_content| %>
+				<tr>
+					<td class="col-xs-2">
+            <%= tag_content.genre %>
+					</td>
+					<td class="col-xs-6">
+            <ul>
+              <% tag_content.public_descriptions.each do |public_description| %>
+                <li><%= public_description.content %></li>
+              <% end %>
+            </ul>
+					</td>
+					<td class="col-xs-2">
+            <span class="glyphicon glyphicon-tag" aria-hidden="true">
+              <%= tag_content.tags.count %>
+            </span>
+					</td>
+          <td class="col-xs-1">
+            <%= link_to "edit", edit_tag_content_path(tag_content), type: "button", class: "btn btn-success" %>
+          </td>
+          <td class="col-xs-1">
+            <%= link_to "destroy", tag_content_path(tag_content), method: :delete ,"data-confirm" => "really delete?", type: "button", class:"btn btn-danger" %>
+          </td>
+				</tr>
+			<% end %>
+		</table>
+	</div>
+</div>

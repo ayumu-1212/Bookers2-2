@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-lg-3"></div>
+  <div class="col-lg-6">
+    <h2>Editting Tag</h2>
+    <%= form_for @tag_content do |f| %>
+      <div class="form-group">
+        <%= f.label :genre, "Tag" %>
+        <%= f.text_field :genre, style: "width:100%;" %>
+      </div>
+      <h3>description</h3>
+      <div id="public_description">
+        <%= f.fields_for :public_descriptions do |description| %>
+          <%= render "templates/public_description_fields", f: description %>
+        <% end %>
+        <div id="links">
+          <%= link_to_add_association "add description",f, :public_descriptions, partial: "templates/public_description_fields" %>
+        </div>
+      </div>
+      <%= f.submit "Update Tag", class: "btn btn-primary btn-block" %>
+    <% end %>
+  </div>
+  <div class="col-lg-3"></div>
+</div>

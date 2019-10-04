@@ -1,0 +1,17 @@
+<div class="nested-fields well well-compact">
+  <div class="form-group">
+    <%= f.label :genre %>
+    <%= f.select :tag_content_id, TagContent.all.collect { |t| [t.genre, t.id] } %><br>
+    <%= link_to_remove_association "remove tags", f %>
+  </div>
+
+  <div class="descriptions">
+    <%= f.fields_for :private_descriptions do |description| %>
+      <%= render "templates/private_description_fields", f: description %>
+    <% end %>
+    <div class="links">
+      <%= link_to_add_association "add descriptions", f, :private_descriptions, partial: "templates/private_description_fields" %>
+    </div>
+  </div>
+</div>
+

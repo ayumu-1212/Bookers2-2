@@ -18,7 +18,15 @@
 
       <p>Opinion</p>
       <%= f.text_area :body, style: "width:100%;" %>
-      <br>
+
+      <p>Tags</p>
+      <%= f.fields_for :tags do |tag| %>
+        <%= render "templates/tag_fields", f: tag %>
+      <% end %>
+
+      <div>
+        <%= link_to_add_association "add tags",f, :tags, partial: "templates/tag_fields" %>
+      </div>
 
       <%= f.submit "Update Book", class: "btn btn-primary btn-block" %>
     <% end %>

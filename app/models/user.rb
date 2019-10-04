@@ -5,7 +5,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
 	has_many :books, dependent: :destroy
+  accepts_nested_attributes_for :books, allow_destroy: true
+
   has_many :book_comments, dependent: :destroy
+
   has_many :likes, dependent: :destroy
   has_many :liked_books, through: :likes, source: :book
 
