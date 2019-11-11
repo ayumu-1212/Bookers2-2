@@ -1,2 +1,0 @@
-// idの部分のHTMLだけ、renderで部分的に更新するという処理です
-$('#likes_buttons_<%= @book.id %>').html("<%= j(render partial: 'likes/like', locals: {book: @book}) %>");
