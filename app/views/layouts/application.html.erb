@@ -43,6 +43,11 @@
               <% end %>
             </li>
             <li>
+              <%= link_to snow_index_path do %>
+                <span class="glyphicon glyphicon-asterisk" aria-hidden="true"> Snow</span>
+              <% end %>
+            </li>
+            <li>
               <%= link_to destroy_user_session_path, method: :delete do %>
                 <span class="glyphicon glyphicon-log-out" aria-hidden="true"> Logout</span>
               <% end %>

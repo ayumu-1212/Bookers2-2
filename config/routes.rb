@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'snow/index'
   get 'maps' => "maps#index"
   root 'home#top'
   get 'home/about', as: "about"
