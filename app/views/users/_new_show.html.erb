@@ -43,7 +43,7 @@
 <% end %>
 
 <h2>New book</h2>
-<%= form_for newbook, remote: true do |f| %>
+<%= form_for newbook do |f| %>
   <div class="form-group">
     <%= f.label :title, "title" %>
     <%= f.text_field :title, style: "width:100%;" %>
@@ -61,7 +61,7 @@
   </div>
 <% end %>
 <h2>New Tag</h2>
-<%= form_for newtag, remote: true do |f| %>
+<%= form_for newtag do |f| %>
   <div class="form-group">
     <%= f.label :genre, "Tag" %>
     <%= f.text_field :genre, style: "width:100%;" %>
